@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ming.dao.UserDao">
-    <select id="login" resultType="User" parameterType="User">
+    <select id="login" resultType="User" parameterType="com.ming.pojo.User">
 		SELECT
 			*
 		FROM
@@ -13,4 +13,16 @@
 			AND PASSWORD = #{password}
 			AND grade = #{grade};
     </select>
+
+    <insert id="registered" parameterType="com.ming.pojo.User">
+        INSERT INTO tb_user ( id, username, `password`, sex, birthday, grade )
+        VALUES
+        (
+        NULL,
+        #{username},
+        #{password},
+        #{sex},
+        #{birthday},
+        #{grade})
+    </insert>
 </mapper>

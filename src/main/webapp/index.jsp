@@ -13,6 +13,6 @@
     <title>$Title$</title>
 </head>
 <body>
-<c:redirect url="${pageContext.request.contextPath}/pages/login.jsp"/>
+<c:redirect url="${pageContext.request.contextPath}/pages/home.html"/>
 </body>
 </html>

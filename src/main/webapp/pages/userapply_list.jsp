@@ -35,29 +35,30 @@
             text-align: center;
             vertical-align: middle !important;
         }
+
     </script>
 
     <script> function startTime() {
-        var today = new Date();//定义日期对象
-        var yyyy = today.getFullYear();//通过日期对象的getFullYear()方法返回年
-        var MM = today.getMonth() + 1;//通过日期对象的getMonth()方法返回年
-        var dd = today.getDate();//通过日期对象的getDate()方法返回年
-        var hh = today.getHours();//通过日期对象的getHours方法返回小时
-        var mm = today.getMinutes();//通过日期对象的getMinutes方法返回分钟
-        var ss = today.getSeconds();//通过日期对象的getSeconds方法返回秒
+        let today = new Date();//定义日期对象
+        let yyyy = today.getFullYear();//通过日期对象的getFullYear()方法返回年
+        let MM = today.getMonth() + 1;//通过日期对象的getMonth()方法返回年
+        let dd = today.getDate();//通过日期对象的getDate()方法返回年
+        let hh = today.getHours();//通过日期对象的getHours方法返回小时
+        let mm = today.getMinutes();//通过日期对象的getMinutes方法返回分钟
+        let ss = today.getSeconds();//通过日期对象的getSeconds方法返回秒
         // 如果分钟或小时的值小于10，则在其值前加0，比如如果时间是下午3点20分9秒的话，则显示15：20：09
         MM = checkTime(MM);
         dd = checkTime(dd);
         mm = checkTime(mm);
         ss = checkTime(ss);
-        var day; //用于保存星期（getDay()方法得到星期编号）
-        if (today.getDay() == 0) day = "星期日 "
-        if (today.getDay() == 1) day = "星期一 "
-        if (today.getDay() == 2) day = "星期二 "
-        if (today.getDay() == 3) day = "星期三 "
-        if (today.getDay() == 4) day = "星期四 "
-        if (today.getDay() == 5) day = "星期五 "
-        if (today.getDay() == 6) day = "星期六 "
+        let day; //用于保存星期（getDay()方法得到星期编号）
+        if (today.getDay() === 0) day = "星期日 "
+        if (today.getDay() === 1) day = "星期一 "
+        if (today.getDay() === 2) day = "星期二 "
+        if (today.getDay() === 3) day = "星期三 "
+        if (today.getDay() === 4) day = "星期四 "
+        if (today.getDay() === 5) day = "星期五 "
+        if (today.getDay() === 6) day = "星期六 "
         document.getElementById('nowDateTimeSpan').innerHTML = yyyy + "-" + MM + "-" + dd + " " + hh + ":" + mm + ":" + ss + "   " + day;
         setTimeout('startTime()', 1000);//每一秒中重新加载startTime()方法
     }
@@ -69,25 +70,36 @@
         return i;
     }
     </script>
+
+    <style>
+        .bg {
+            background-image: url("http://cdnming.minglovejuan.club/falv/20201005091956.png");
+        }
+    </style>
 <body class="col-center-block" onload="startTime()">
+<div class="container-fluid bg">
 <div class="container">
     <div class="row">
-        <div class="col-md-12 fl sj " style="background-color: rgb(71,33,75);color: #ffffff">
-            欢迎使用项目申报管理系统！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span
+        <div class="col-md-12 fl sj " style="background-color: rgb(91,192,222);color: #ffffff">
+            欢迎使用法律援助平台！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span
                 id="nowDateTimeSpan"></span></span>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <img src="${pageContext.request.contextPath}/images/logo.png" alt="新闻中国"
-                 class="img-responsive left"/>
+        <div class="col-md-3"><img src="${pageContext.request.contextPath}/images/fayuan.png"
+                                   class="img-responsive center-block" alt="法援网"/>
+            <img src="http://cdnming.minglovejuan.club/typora/20200929093535.png" class="img-responsive center-block"
+                 alt="法律图片">
         </div>
+        <div class="col-md-9"><img src="http://cdnming.minglovejuan.club/typora/20200929092235.png"
+                                   class="img-responsive "
+                                   alt="人物"/></div>
     </div>
     <div class="row">
-        <div class="col-md-12 fl sj " style="background-color: rgb(113,36,107);color: #ffffff">
-            <div id="status">亲爱的申报人${loginUser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
-                    href="${pageContext.request.contextPath}/quitServlet"><span style="color: #ffffff">退出登录</span></a>
+        <div class="col-md-12 fl sj " style="background-color: rgb(91,192,222);color: #ffffff">
+            <div id="status">亲爱的申请人${loginUser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
+                    href="${pageContext.request.contextPath}/user/quit"><span style="color: #ffffff">退出登录</span></a>
             </div>
 
         </div>
@@ -96,24 +108,16 @@
         <div class="col-md-12" style="background: #ffffff">
             <ul class="nav nav-tabs" id="headul">
                 <li role="presentation" class="dropdown">
-                    <a
-                            href="${pageContext.request.contextPath}/question/myQuestion"
-                            style="font-size: large;color: rgb(113,36,108)">
-                        我的申报
+                    <a href="${pageContext.request.contextPath}/question/myQuestion"
+                       style="font-size: large;color: rgb(113,36,108)">
+                        我的申请
                     </a>
                 </li>
 
                 <li role="presentation" class="dropdown">
-                    <a href="${pageContext.request.contextPath}/pages/petitioner_add.jsp"
+                    <a href="${pageContext.request.contextPath}/pages/user_apply.jsp"
                        style="font-size: large;color: rgb(113,36,108)">
-                        添加申报
-                    </a>
-                </li>
-
-                <li role="presentation" class="dropdown">
-                    <a href="${pageContext.request.contextPath}/pages/report_result_json.jsp"
-                       style="font-size: large;color: rgb(113,36,108)">
-                        申报结果
+                        申请援助
                     </a>
                 </li>
             </ul>
@@ -121,7 +125,7 @@
     </div>
     <div class="row">
         <div class="jumbotron">
-            <h3 style="text-align: center">申报项目等待处理列表</h3>
+            <h3 style="text-align: center">援助问题等待处理列表</h3>
 
 
             <form>
@@ -152,7 +156,9 @@
                                     </c:when>
                                 </c:choose>
                             </td>
-                            <td><a class="btn btn-success btn-sm" href="javascript:void(0);">详情</a></td>
+                            <td><a class="btn btn-success btn-sm"
+                                   href="${pageContext.request.contextPath}/question/readQuestion/${question.id}">详情</a>
+                            </td>
                         </tr>
 
                     </c:forEach>
@@ -179,7 +185,7 @@
                         </li>
 
 
-                        <c:forEach begin="1" end="${pb.total}" var="i">
+                        <c:forEach begin="1" end="${pb.pages}" var="i">
 
 
                             <c:if test="${pb.pageNum == i}">
@@ -196,14 +202,14 @@
                         </c:forEach>
 
 
-                        <c:if test="${pb.pageNum==pb.total}">
+                        <c:if test="${pb.pageNum==pb.pages}">
 
                         <li class="disabled">
                             <a href="${pageContext.request.contextPath}/question/myQuestion?pages=${pb.pageNum}&size=${pb.pageSize}"
                                aria-label="Next">
                                 </c:if>
 
-                                <c:if test="${pb.pageNum!=pb.total}">
+                                <c:if test="${pb.pageNum!=pb.pages}">
                         <li>
                             <a href="${pageContext.request.contextPath}/question/myQuestion?pages=${pb.pageNum + 1}&size=${pb.pageSize}"
                                aria-label="Next">
@@ -224,6 +230,6 @@
     </div>
 
 </div>
-
+</div>
 </body>
 </html>

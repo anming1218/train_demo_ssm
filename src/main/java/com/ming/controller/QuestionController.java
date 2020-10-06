@@ -5,16 +5,14 @@ import com.ming.pojo.User;
 import com.ming.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *@program: train_ssm
@@ -30,16 +28,18 @@ public class QuestionController {
     private QuestionService questionService;
 
     @RequestMapping("/add")
-    public void add(HttpServletRequest request, HttpServletResponse response) {
+    public String add(HttpServletRequest request) {
 
         //#{type},#{pname},#{details},#{unmae},#{telnumber},#{statu},#{creatby}
+        String type = request.getParameter("type");
         String pname = request.getParameter("pname");
         String details = request.getParameter("details");
         String uname = request.getParameter("uname");
         String telnumber = request.getParameter("telnumber");
         String creatby = request.getParameter("creatby");
         Question question = new Question();
-        //question.setType(type);
+
+        question.setType(type);
         question.setPname(pname);
         question.setDetails(details);
         question.setUname(uname);
@@ -48,6 +48,8 @@ public class QuestionController {
         question.setCreatby(Integer.parseInt(creatby));
 
         questionService.add(question);
+
+        return "forward:/question/myQuestion";
     }
 
     /**
@@ -203,7 +205,70 @@ public class QuestionController {
         questionService.answerQuestion(question);
 
         return "redirect:/question/findAnswerQuestion";
-
     }
 
+    /**
+     * 查询所有法律援助信息
+     * @param page
+     * @param size
+     * @return
+     */
+    @RequestMapping("findAllQuestion")
+    @ResponseBody
+    public PageInfo<Question> findAllQuestion(@RequestParam(name = "pages", required = true, defaultValue = "1") String page, @RequestParam(name = "size", required = true, defaultValue = "8") String size) {
+        List<Question> questionList = questionService.findAllQuestion(Integer.parseInt(page), Integer.parseInt(size));
+        PageInfo<Question> pb = new PageInfo<>(questionList);
+
+        return pb;
+    }
+
+    /**
+     * 查询审核中的法律援助
+     * @param page
+     * @param size
+     * @param statu
+     * @return
+     */
+    @RequestMapping("findKindsQuestion")
+    @ResponseBody
+    public PageInfo<Question> findKindsQuestion(@RequestParam(name = "pages", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "8") int size, @RequestParam("statu") String statu) {
+        List<Question> questionList = questionService.findKindsQuestion(page, size, statu);
+        PageInfo<Question> pb = new PageInfo<>(questionList);
+
+        return pb;
+    }
+
+    /**
+     * 模糊查询需要的法律援助
+     * @param page
+     * @param size
+     * @param type
+     * @param statu
+     * @param pname
+     * @return
+     */
+    @RequestMapping("selectLikeQuestion")
+    @ResponseBody
+    public PageInfo<Question> selectLikeQuestion(@RequestParam(name = "pages", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "8") int size,
+                                   @RequestParam(name = "type",required = false) String type,
+                                   @RequestParam(name = "statu",required = false) String statu,
+                                   @RequestParam(name = "pname",required = false) String pname) {
+
+        List<Question> questionList = questionService.selectLikeQuestion(page, size, type,statu,pname);
+        PageInfo<Question> pb = new PageInfo<>(questionList);
+
+        return pb;
+    }
+
+    /**
+     * 查找处于不同状态的记录条数
+     * @return
+     */
+    @RequestMapping("findAmount")
+    @ResponseBody
+    public Map<String,Integer> findAmount(){
+        Map<String, Integer> map = questionService.findAmount();
+
+        return map;
+    }
 }

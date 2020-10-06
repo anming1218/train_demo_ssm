@@ -6,7 +6,9 @@ import com.ming.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *@program: train_ssm
@@ -88,7 +90,7 @@ public class QuestionServiceImpl implements QuestionService {
      */
     @Override
     public void refuseSelectApply(String[] ids) {
-        if (ids!=null&&ids.length!=0){
+        if (ids != null && ids.length != 0) {
             for (String id : ids) {
                 questionDao.refuseApply(Integer.parseInt(id));
             }
@@ -102,7 +104,7 @@ public class QuestionServiceImpl implements QuestionService {
      */
     @Override
     public void passSelectApply(String[] ids) {
-        if (ids!=null&&ids.length!=0){
+        if (ids != null && ids.length != 0) {
             for (String id : ids) {
                 questionDao.passApply(Integer.parseInt(id));
             }
@@ -126,6 +128,68 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void answerQuestion(Question question) {
         questionDao.answerQuestion(question);
+    }
 
+    /**
+     * 查询所有法律援助信息
+     * @param page
+     * @param size
+     * @return
+     */
+    @Override
+    public List<Question> findAllQuestion(Integer page, Integer size) {
+        PageHelper.startPage(page, size);
+        return questionDao.findAllQuestion();
+    }
+
+    /**
+     * 查询审核中的法律援助
+     * @param page
+     * @param size
+     * @param statu
+     * @return
+     */
+    @Override
+    public List<Question> findKindsQuestion(int page, int size, String statu) {
+        PageHelper.startPage(page, size);
+        return questionDao.findKindsQuestion(Integer.parseInt(statu));
+    }
+
+    /**
+     * 模糊查询需要的法律援助
+     * @param page
+     * @param size
+     * @param type
+     * @param statu
+     * @param pname
+     * @return
+     */
+    @Override
+    public List<Question> selectLikeQuestion(int page, int size, String type, String statu, String pname) {
+        Question likeQuestion = new Question();
+        if (!"-1".equals(type)) {
+            likeQuestion.setType(type);
+        }
+
+        if (!"-1".equals(statu)) {
+            likeQuestion.setStatu(Integer.parseInt(statu));
+        }
+        likeQuestion.setPname(pname);
+
+        PageHelper.startPage(page, size);
+
+        return questionDao.selectLikeQuestion(likeQuestion);
+    }
+
+    /**
+     * 查找处于不同状态的记录条数
+     * @return
+     */
+    @Override
+    public Map<String, Integer> findAmount() {
+        Map<String, Integer> map = new HashMap<>(16);
+        map.put("allAmount", questionDao.findAmountAll());
+        map.put("processed", questionDao.findAmountProcessed());
+        return map;
     }
 }

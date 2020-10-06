@@ -2,6 +2,7 @@ package com.ming.service;
 import com.ming.pojo.Question;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *@program: train_ssm
@@ -79,4 +80,39 @@ public interface QuestionService {
      * @param question
      */
     void answerQuestion(Question question);
+
+    /**
+     * 查询所有法律援助信息
+     * @param page
+     * @param size
+     * @return
+     */
+    List<Question> findAllQuestion(Integer page,Integer size);
+
+    /**
+     * 查询审核中的法律援助
+     * @param page
+     * @param size
+     * @param statu
+     * @return
+     */
+    List<Question> findKindsQuestion(int page, int size, String statu);
+
+    /**
+     * 模糊查询需要的法律援助
+     * @param page
+     * @param size
+     * @param type
+     * @param statu
+     * @param pname
+     * @return
+     */
+    List<Question> selectLikeQuestion(int page, int size, String type, String statu, String pname);
+
+    /**
+     * 查找处于不同状态的记录条数
+     * @return
+     */
+    Map<String, Integer> findAmount();
+
 }

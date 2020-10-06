@@ -23,8 +23,7 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-
-        //登录
+        //注册
         function login() {
             if ($("#name").val() === "") {
                 alert("请输入用户名");
@@ -36,7 +35,7 @@
             }
 
             let form = document.getElementById("form");
-            let action = "${pageContext.request.contextPath}/user/login";
+            let action = "${pageContext.request.contextPath}/user/registered";
 
             form.setAttribute("action", action);
 
@@ -109,37 +108,34 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="property" class="col-md-3 control-label">身份:</label>
-                            <div class="col-md-5">
+                            <label class="col-md-3 control-label">性别：</label>
+                            <div class="col-md-7">
                                 <label>
-                                    <select style="border: 1px solid rgb(77,180,238);" class="form-control"
-                                            id="property" name="property">
-                                        <option value="0">普通用户</option>
-                                        <option value="1">律师</option>
-                                        <option value="2">管理员</option>
-                                    </select>
-                                </label>
+                                    <input type="radio" name="gender" value="男" checked/>
+                                </label>男
+                                <label>
+                                    <input type="radio" name="gender" value="女"/>
+                                </label>女
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <label id="error">
-                                    <!-- 出错显示的信息框 -->
-                                    <strong style="color: red">${login_msg}</strong>
-                                </label>
+                            <label for="birthday" class="col-md-3 control-label">生日:</label>
+                            <div class="col-md-7">
+                                <input type="date" style="border: 1px solid rgb(77,180,238);" class="form-control"
+                                       id="birthday" name="birthday">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10 text-center"
                                  style="width: 320px;height:50px;background-color: rgb(30,75,144)" onclick="login()"
                                  onmousemove="changeOnColor(this)" onmouseout="changeOutColor(this)">
-                                <span style="color: white;line-height: 50px;outline-width: 320px;font-size: 20px">登录</span>
+                                <span style="color: white;line-height: 50px;outline-width: 320px;font-size: 20px">注册</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
-                                <a href="../pages/registered.jsp" style="color:black;font-size: 15px">注册</a>
+                                <a href="../pages/login.jsp" style="color:black;font-size: 15px">返回登录</a>
                             </div>
                         </div>
                     </form>

@@ -27,4 +27,13 @@ public class UserServiceImpl implements UserService {
     public User login(User user) {
         return userDao.login(user);
     }
+
+    /**
+     * 注册
+     * @param user
+     */
+    @Override
+    public void registered(User user) {
+        userDao.registered(user);
+    }
 }

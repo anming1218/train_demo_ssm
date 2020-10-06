@@ -147,161 +147,166 @@
             return i;
         }
     </script>
+
+    <style>
+        .bg {
+            background-image: url("http://cdnming.minglovejuan.club/falv/20201005091956.png");
+        }
+    </style>
 </head>
 <body class="col-center-block" onload="startTime()">
-
-<%--<div th:text="${msg}" id="msg" style="display:none">--%>
-<%--</div>--%>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 fl sj " style="background-color: rgb(71,33,75);color: #ffffff">
-            欢迎使用项目申报管理系统！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span
-                id="nowDateTimeSpan"></span></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <img src="${pageContext.request.contextPath}/images/logo.png" alt="新闻中国"
-                 class="img-responsive left"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 fl sj " style="background-color: rgb(71,33,75);color: #ffffff">
-            <div id="status">亲爱的管理员${loginUser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
-                    href="${pageContext.request.contextPath}/quitServlet"><span style="color: #ffffff">退出登录</span></a>
+<div class="container-fluid bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fl sj " style="background-color: rgb(91,192,222);color: #ffffff">
+                欢迎使用法律援助处理系统！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span
+                    id="nowDateTimeSpan"></span></span>
             </div>
-
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12" style="background: #ffffff">
-            <ul class="nav nav-tabs">
-                <li role="presentation" class="dropdown">
-                    <a href="${pageContext.request.contextPath}/findNoApprovePetitionerServlet"
-                       style="font-size: large;color: rgb(113,36,108)">
-                        申报等待
-                    </a>
-                </li>
 
-                <li role="presentation" class="dropdown">
-                    <a href="${pageContext.request.contextPath}/pages/report_result_json.jsp"
-                       style="font-size: large;color: rgb(113,36,108)">
-                        申报结果
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-    <div class="row">
-        <div class="jumbotron">
-            <h3 style="text-align: center">申报项目等待处理列表</h3>
-
-            <div style="float: right;margin: 5px;">
-                <a class="btn btn-primary" href="javascript:void(0);" onclick="passSelectProject()">通过选中</a>
-                <a href="javascript:void(0);" onclick="refuseSelectProject()">
-                    <button type="button" class="btn btn-danger">拒绝选中</button>
-                </a>
+        <div class="row">
+            <div class="col-md-3"><img src="${pageContext.request.contextPath}/images/fayuan.png"
+                                       class="img-responsive center-block" alt="法援网"/>
+                <img src="http://cdnming.minglovejuan.club/typora/20200929093535.png"
+                     class="img-responsive center-block" alt="法律图片">
             </div>
+            <div class="col-md-9"><img src="http://cdnming.minglovejuan.club/typora/20200929092235.png"
+                                       class="img-responsive "
+                                       alt="人物"/></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 fl sj " style="background-color: rgb(91,192,222);color: #ffffff">
+                <div id="status">亲爱的管理员${loginUser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
+                        href="${pageContext.request.contextPath}/user/quit"><span style="color: #ffffff">退出登录</span></a>
+                </div>
 
-            <form id="form">
-                <table class="table table-bordered table-hover" style="text-align: center">
-                    <tr class="success">
-                        <th class="text-center"><input type="checkbox" id="firstCb"></th>
-                        <th class="text-center">编号</th>
-                        <th class="text-center">问题类型</th>
-                        <th class="text-center">问题标题</th>
-                        <th class="text-center">姓名</th>
-                        <th class="text-center">电话</th>
-                        <th class="text-center">详情</th>
-                        <th class="text-center">操作</th>
-                    </tr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="background: #ffffff">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="dropdown">
+                        <a
+                                href="${pageContext.request.contextPath}/question/findAll"
+                                style="font-size: large;color: rgb(113,36,108)">
+                            查看请求
+                        </a>
+                    </li>
 
-                    <c:forEach items="${pb.list}" var="question" varStatus="s">
-                        <tr class="text-center">
-                            <td><label>
-                                <input type="checkbox" name="questionid" value="${question.id}">
-                            </label></td>
-                            <td>${s.count}</td>
-                            <td>${question.type}}</td>
-                            <td>${question.pname}</td>
-                            <td>${question.uname}</td>
-                            <td>${question.telnumber}</td>
-                            <td><a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/question/readQuestion/${question.id}">详情</a></td>
-                            <td><a class="btn btn-primary btn-sm"
-                                   href="javascript:void(0);" onclick="passProject('${question.id}');">通过</a>&nbsp;
-                                <a class="btn btn-danger btn-sm"
-                                   href="javascript:void(0);" onclick="refuseProject('${question.id}');">拒绝</a>
-                            </td>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="jumbotron">
+                <h3 style="text-align: center">援助问题等待处理列表</h3>
+
+                <div style="float: right;margin: 5px;">
+                    <a class="btn btn-primary" href="javascript:void(0);" onclick="passSelectProject()">通过选中</a>
+                    <a href="javascript:void(0);" onclick="refuseSelectProject()">
+                        <button type="button" class="btn btn-danger">拒绝选中</button>
+                    </a>
+                </div>
+
+                <form id="form">
+                    <table class="table table-bordered table-hover" style="text-align: center">
+                        <tr class="success">
+                            <th class="text-center"><input type="checkbox" id="firstCb"></th>
+                            <th class="text-center">编号</th>
+                            <th class="text-center">问题类型</th>
+                            <th class="text-center">问题标题</th>
+                            <th class="text-center">姓名</th>
+                            <th class="text-center">电话</th>
+                            <th class="text-center">详情</th>
+                            <th class="text-center">操作</th>
                         </tr>
 
-                    </c:forEach>
-
-
-                </table>
-            </form>
-            <div>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <c:if test="${pb.pageNum == 1}">
-                        <li class="disabled">
-                            </c:if>
-
-                            <c:if test="${pb.pageNum != 1}">
-                        <li>
-                            </c:if>
-
-
-                            <a href="${pageContext.request.contextPath}/question/findAll?pages=${pb.pageNum - 1}&size=${pb.pageSize}"
-                               aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-
-
-                        <c:forEach begin="1" end="${pb.total}" var="i">
-
-
-                            <c:if test="${pb.pageNum == i}">
-                                <li class="active"><a
-                                        href="${pageContext.request.contextPath}/question/findAll?pages=${i}&size=${pb.pageSize}">${i}</a>
-                                </li>
-                            </c:if>
-                            <c:if test="${pb.pageNum != i}">
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/question/findAll?pages=${i}&size=${pb.pageSize}">${i}</a>
-                                </li>
-                            </c:if>
+                        <c:forEach items="${pb.list}" var="question" varStatus="s">
+                            <tr class="text-center">
+                                <td><label>
+                                    <input type="checkbox" name="questionid" value="${question.id}">
+                                </label></td>
+                                <td>${s.count}</td>
+                                <td>${question.type}}</td>
+                                <td>${question.pname}</td>
+                                <td>${question.uname}</td>
+                                <td>${question.telnumber}</td>
+                                <td><a class="btn btn-success btn-sm"
+                                       href="${pageContext.request.contextPath}/question/readQuestion/${question.id}">详情</a>
+                                </td>
+                                <td><a class="btn btn-primary btn-sm"
+                                       href="javascript:void(0);" onclick="passProject('${question.id}');">通过</a>&nbsp;
+                                    <a class="btn btn-danger btn-sm"
+                                       href="javascript:void(0);" onclick="refuseProject('${question.id}');">拒绝</a>
+                                </td>
+                            </tr>
 
                         </c:forEach>
 
 
-                        <c:if test="${pb.pageNum==pb.total}">
-
-                        <li class="disabled">
-                            <a href="${pageContext.request.contextPath}/question/findAll?pages=${pb.pageNum}&size=${pb.pageSize}"
-                               aria-label="Next">
+                    </table>
+                </form>
+                <div>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <c:if test="${pb.pageNum == 1}">
+                            <li class="disabled">
                                 </c:if>
 
-                                <c:if test="${pb.pageNum!=pb.total}">
-                        <li>
-                            <a href="${pageContext.request.contextPath}/question/findAll?pages=${pb.pageNum + 1}&size=${pb.pageSize}"
-                               aria-label="Next">
+                                <c:if test="${pb.pageNum != 1}">
+                            <li>
                                 </c:if>
 
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                        <span style="font-size: 25px;margin-left: 5px;">
+
+                                <a href="${pageContext.request.contextPath}/question/findAll?pages=${pb.pageNum - 1}&size=${pb.pageSize}"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+
+
+                            <c:forEach begin="1" end="${pb.total}" var="i">
+
+
+                                <c:if test="${pb.pageNum == i}">
+                                    <li class="active"><a
+                                            href="${pageContext.request.contextPath}/question/findAll?pages=${i}&size=${pb.pageSize}">${i}</a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${pb.pageNum != i}">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/question/findAll?pages=${i}&size=${pb.pageSize}">${i}</a>
+                                    </li>
+                                </c:if>
+
+                            </c:forEach>
+
+
+                            <c:if test="${pb.pageNum==pb.total}">
+
+                            <li class="disabled">
+                                <a href="${pageContext.request.contextPath}/question/findAll?pages=${pb.pageNum}&size=${pb.pageSize}"
+                                   aria-label="Next">
+                                    </c:if>
+
+                                    <c:if test="${pb.pageNum!=pb.total}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/question/findAll?pages=${pb.pageNum + 1}&size=${pb.pageSize}"
+                                   aria-label="Next">
+                                    </c:if>
+
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            <span style="font-size: 25px;margin-left: 5px;">
                     共${pb.total}条记录，共${pb.pages}页
                 </span>
 
-                    </ul>
-                </nav>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </div>
 </body>

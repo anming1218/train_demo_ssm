@@ -34,7 +34,7 @@
         function add() {
 
             let form = document.getElementById("form");
-            let action = "${pageContext.request.contextPath}/userQuestion/add";
+            let action = "${pageContext.request.contextPath}/question/add";
 
             form.setAttribute("action", action);
 
@@ -74,112 +74,125 @@
             return i;
         }
     </script>
+
+    <style>
+        .bg {
+            background-image: url("http://cdnming.minglovejuan.club/falv/20201005091956.png");
+        }
+    </style>
+
 <body class="col-center-block" onload="startTime()">
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 fl sj " style="background-color: rgb(71,33,75);color: #ffffff">
-            欢迎使用法律援助平台！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span
-                id="nowDateTimeSpan"></span></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <img src="${pageContext.request.contextPath}/images/logo.png" alt="新闻中国"
-                 class="img-responsive left"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 fl sj " style="background-color: rgb(113,36,107);color: #ffffff">
-            <div id="status">亲爱的申报人${loginUser.pename}，欢迎您！ &#160;&#160;&#160;&#160; <a
-                    href="${pageContext.request.contextPath}/quitServlet"><span style="color: #ffffff">退出登录</span></a>
+<div class="container-fluid bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 fl sj " style="background-color: rgb(91,192,222);color: #ffffff">
+                欢迎使用法律援助平台！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span
+                    id="nowDateTimeSpan"></span></span>
             </div>
-
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12" style="background: #ffffff">
-            <ul class="nav nav-tabs" id="headul">
-                <li role="presentation" class="dropdown">
-                    <a href="${pageContext.request.contextPath}/findMyApplyServlet"
-                       style="font-size: large;color: rgb(113,36,108)">
-                        我的申请
-                    </a>
-                </li>
 
-                <li role="presentation" class="dropdown">
-                    <a href="${pageContext.request.contextPath}/pages/user_apply.jsp"
-                       style="font-size: large;color: rgb(113,36,108)">
-                        申请援助
-                    </a>
-                </li>
-
-            </ul>
+        <div class="row">
+            <div class="col-md-3"><img src="${pageContext.request.contextPath}/images/fayuan.png"
+                                       class="img-responsive center-block" alt="法援网"/>
+                <img src="http://cdnming.minglovejuan.club/typora/20200929093535.png"
+                     class="img-responsive center-block"
+                     alt="法律图片">
+            </div>
+            <div class="col-md-9"><img src="http://cdnming.minglovejuan.club/typora/20200929092235.png"
+                                       class="img-responsive "
+                                       alt="人物"/></div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-12 fl sj " style="background-color: rgb(91,192,222);color: #ffffff">
+                <div id="status">亲爱的申请人${loginUser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
+                        href="${pageContext.request.contextPath}/user/quit"><span style="color: #ffffff">退出登录</span></a>
+                </div>
 
-    <div class="row">
-        <div class="jumbotron">
-            <div class="container" style="width: 400px">
-                <h3 style="text-align: center">申请援助</h3>
-                <form action="#" class="center-block" method="post" id="form">
-                    <table border="1" class="table table-bordered table-hover center-block">
-                        <div class="row form-group">
-                            <label for="stamp">问题类型：</label>
-                            <label>
-                                <select class="form-control" id="stamp" name="stamp">
-                                    <option>请选择问题类型</option>
-                                    <option value="0">婚姻家庭</option>
-                                    <option value="1">交通事故</option>
-                                    <option value="2">刑事辩护</option>
-                                    <option value="3">劳动工伤</option>
-                                    <option value="4">房产纠纷</option>
-                                    <option value="5">债务债权</option>
-                                    <option value="6">合同事务</option>
-                                    <option value="7">医疗纠纷</option>
-                                    <option value="8">公司经营</option>
-                                    <option value="9">知识产权</option>
-                                    <option value="10">其他</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="row form-group">
-                            <label for="pname">问题标题：</label>
-                            <input type="text" class="form-control" style=" height :25px;width: 300px" id="pname"
-                                   name="pname" placeholder="请输入问题标题"/>
-                        </div>
-                        <div class="row form-group">
-                            <label for="details">问题详情：</label>
-                            <textarea rows="3" cols="20" class="form-control" id="details" name="details">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="background: #ffffff">
+                <ul class="nav nav-tabs" id="headul">
+                    <li role="presentation" class="dropdown">
+                        <a href="${pageContext.request.contextPath}/question/myQuestion"
+                           style="font-size: large;color: rgb(113,36,108)">
+                            我的申请
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="dropdown">
+                        <a href="${pageContext.request.contextPath}/pages/user_apply.jsp"
+                           style="font-size: large;color: rgb(113,36,108)">
+                            申请援助
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="jumbotron">
+                <div class="container" style="width: 400px">
+                    <h3 style="text-align: center">申请援助</h3>
+                    <form action="#" class="center-block" method="post" id="form">
+                        <table border="1" class="table table-bordered table-hover center-block">
+                            <div class="row form-group">
+                                <label for="type">问题类型：</label>
+                                <label>
+                                    <select class="form-control" id="type" name="type">
+                                        <option>请选择问题类型</option>
+                                        <option value="交通事故">交通事故</option>
+                                        <option value="刑事辩护">刑事辩护</option>
+                                        <option value="劳动工伤">劳动工伤</option>
+                                        <option value="房产纠纷">房产纠纷</option>
+                                        <option value="债务债权">债务债权</option>
+                                        <option value="合同事务">合同事务</option>
+                                        <option value="医疗纠纷">医疗纠纷</option>
+                                        <option value="公司经营">公司经营</option>
+                                        <option value="知识产权">知识产权</option>
+                                        <option value="婚姻家庭">婚姻家庭</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="row form-group">
+                                <label for="pname">问题标题：</label>
+                                <input type="text" class="form-control" style=" height :25px;width: 300px" id="pname"
+                                       name="pname" placeholder="请输入问题标题"/>
+                            </div>
+                            <div class="row form-group">
+                                <label for="details">问题详情：</label>
+                                <textarea rows="3" cols="20" class="form-control" id="details" name="details">
                             </textarea>
-                        </div>
-                        <div class="row form-group">
-                            <label for="uname">姓名：</label>
-                            <input type="text" class="form-control" style=" height :25px;width: 300px" id="uname"
-                                   name="uname" placeholder="请输入姓名"/>
-                        </div>
-                        <div class="row form-group">
-                            <label for="telnumber">手机号码：</label>
-                            <input type="text" class="form-control" style=" height :25px;width: 300px" id="telnumber"
-                                   name="telnumber" placeholder="请输入手机号码"/>
-                        </div>
-                        <input type="hidden" name="creatby" value="1" readonly="readonly"/>
+                            </div>
+                            <div class="row form-group">
+                                <label for="uname">姓名：</label>
+                                <input type="text" class="form-control" style=" height :25px;width: 300px" id="uname"
+                                       name="uname" placeholder="请输入姓名"/>
+                            </div>
+                            <div class="row form-group">
+                                <label for="telnumber">手机号码：</label>
+                                <input type="text" class="form-control" style=" height :25px;width: 300px"
+                                       id="telnumber"
+                                       name="telnumber" placeholder="请输入手机号码"/>
+                            </div>
+                            <input type="hidden" name="creatby" value="1" readonly="readonly"/>
 
-                        <div class="row form-group">
-                            <button type="submit" class="btn btn-info" href="javascript:void(0);" onclick="add();">
-                                提交
-                            </button>
-                        </div>
-                    </table>
-                </form>
+                            <div class="row form-group">
+                                <button type="submit" class="btn btn-info" href="javascript:void(0);" onclick="add();">
+                                    提交
+                                </button>
+                            </div>
+                        </table>
+                    </form>
 
 
+                </div>
             </div>
         </div>
+
     </div>
-
 </div>
-
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.ming.dao;
 import com.ming.pojo.Question;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *@program: train_ssm
@@ -61,4 +62,36 @@ public interface QuestionDao {
      * @param question
      */
     void answerQuestion(Question question);
+
+    /**
+     * 查询所有法律援助信息
+     * @return
+     */
+    List<Question> findAllQuestion();
+
+    /**
+     * 查询审核中的法律援助
+     * @param statu
+     * @return
+     */
+    List<Question> findKindsQuestion(int statu);
+
+    /**
+     * 模糊查询需要的法律援助
+     * @param likeQuestion
+     * @return
+     */
+    List<Question> selectLikeQuestion(Question likeQuestion);
+
+    /**
+     * 查找总记录条数
+     * @return
+     */
+    Integer findAmountAll();
+
+    /**
+     * 查询已经处理过的记录条数
+     * @return
+     */
+    Integer findAmountProcessed();
 }

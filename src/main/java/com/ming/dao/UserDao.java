@@ -9,5 +9,16 @@ import com.ming.pojo.User;
  */
 public interface UserDao {
 
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
     User login(User user);
+
+    /**
+     * 注册
+     * @param user
+     */
+    void registered(User user);
 }

@@ -78,6 +78,12 @@
     margin-left: 10px;
 }
 
+.homehead {
+    background-color: rgb(245, 245, 245);
+    color: rgb(36, 36, 36);
+    height: 30px;
+}
+
 
 .col-center-block {
     float: none;
@@ -174,4 +180,5 @@
 #headul-info a {
     color: #ffffff;
 }
+
 

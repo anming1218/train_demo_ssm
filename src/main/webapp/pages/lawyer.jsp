@@ -73,21 +73,24 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 fl sj " style="background-color: rgb(71,33,75);color: #ffffff">
-            欢迎使用项目申报管理系统！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span
+            欢迎使用法律援助处理系统！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span
                 id="nowDateTimeSpan"></span></span>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <img src="${pageContext.request.contextPath}/images/logo.png" alt="新闻中国"
-                 class="img-responsive left"/>
+        <div class="col-md-3"><img src="${pageContext.request.contextPath}/images/fayuan.png"
+                                   class="img-responsive center-block" alt="法援网"/>
+            <img src="http://cdnming.minglovejuan.club/typora/20200929093535.png" class="img-responsive center-block" alt="法律图片">
         </div>
+        <div class="col-md-9"><img src="http://cdnming.minglovejuan.club/typora/20200929092235.png"
+                                   class="img-responsive "
+                                   alt="人物"/></div>
     </div>
     <div class="row">
         <div class="col-md-12 fl sj " style="background-color: rgb(113,36,107);color: #ffffff">
-            <div id="status">亲爱的申报人${loginUser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
-                    href="${pageContext.request.contextPath}/quitServlet"><span style="color: #ffffff">退出登录</span></a>
+            <div id="status">亲爱的律师${loginUser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
+                    href="${pageContext.request.contextPath}/user/quit"><span style="color: #ffffff">退出登录</span></a>
             </div>
 
         </div>
@@ -100,20 +103,6 @@
                             href="${pageContext.request.contextPath}/question/findAnswerQuestion"
                             style="font-size: large;color: rgb(113,36,108)">
                         查看请求
-                    </a>
-                </li>
-
-                <li role="presentation" class="dropdown">
-                    <a href="${pageContext.request.contextPath}/pages/petitioner_add.jsp"
-                       style="font-size: large;color: rgb(113,36,108)">
-                        添加申报
-                    </a>
-                </li>
-
-                <li role="presentation" class="dropdown">
-                    <a href="${pageContext.request.contextPath}/pages/report_result_json.jsp"
-                       style="font-size: large;color: rgb(113,36,108)">
-                        申报结果
                     </a>
                 </li>
             </ul>

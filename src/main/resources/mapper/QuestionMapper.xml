@@ -127,7 +127,7 @@
             AND pname LIKE CONCAT('%',#{pname},'%')
         </if>
         ORDER BY
-            id DESC
+        id DESC
     </select>
 
     <select id="findAmountAll" resultType="java.lang.Integer">
@@ -145,4 +145,29 @@
         WHERE
             statu = 2
     </select>
+
+    <select id="selectLawyer" resultType="java.lang.Integer">
+        SELECT
+            id
+        FROM
+            tb_user
+        WHERE
+            grade = 1
+    </select>
+
+    <insert id="distributionToLaw">
+        INSERT INTO tb_answer ( id, qid, lid )
+        VALUES
+            (
+                NULL,
+            #{questionId},
+            #{lawyerId})
+    </insert>
+
+    <update id="addFrequency" parameterType="java.lang.Integer">
+        UPDATE tb_question
+        SET frequency = frequency + 1
+        WHERE
+            id = #{id}
+    </update>
 </mapper>

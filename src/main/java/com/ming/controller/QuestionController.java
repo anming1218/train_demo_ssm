@@ -182,6 +182,7 @@ public class QuestionController {
         ModelAndView mv = new ModelAndView();
 
         Question question = questionService.findContent(id);
+        questionService.addFrequency(id);
 
         mv.addObject("question", question);
         mv.setViewName("/question_answer");

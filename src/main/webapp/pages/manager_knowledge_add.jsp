@@ -20,7 +20,7 @@
     initial-scale: 初始的缩放比，为1:1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>法律援助平台——用户</title>
+    <title>法律援助平台——管理员</title>
 
     <!-- 1. 导入CSS的全局样式 -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +34,7 @@
         function add() {
 
             let form = document.getElementById("form");
-            let action = "${pageContext.request.contextPath}/question/add";
+            let action = "${pageContext.request.contextPath}/knowledge/add";
 
             form.setAttribute("action", action);
 
@@ -104,7 +104,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 fl sj " style="background-color: rgb(91,192,222);color: #ffffff">
-                <div id="status">亲爱的申请人${loginUser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
+                <div id="status">亲爱的管理员${loginUser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
                         href="${pageContext.request.contextPath}/user/quit"><span style="color: #ffffff">退出登录</span></a>
                 </div>
 
@@ -114,19 +114,19 @@
             <div class="col-md-12" style="background: #ffffff">
                 <ul class="nav nav-tabs" id="headul">
                     <li role="presentation" class="dropdown">
-                        <a href="${pageContext.request.contextPath}/question/myQuestion"
-                           style="font-size: large;color: rgb(113,36,108)">
-                            我的申请
+                        <a
+                                href="${pageContext.request.contextPath}/question/findAll"
+                                style="font-size: large;color: rgb(113,36,108)">
+                            查看请求
                         </a>
                     </li>
-
                     <li role="presentation" class="dropdown">
-                        <a href="${pageContext.request.contextPath}/pages/user_apply.jsp"
-                           style="font-size: large;color: rgb(113,36,108)">
-                            申请援助
+                        <a
+                                href="${pageContext.request.contextPath}/pages/manager_knowledge_add.jsp"
+                                style="font-size: large;color: rgb(113,36,108)">
+                            增加案例
                         </a>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -134,13 +134,13 @@
         <div class="row">
             <div class="jumbotron">
                 <div class="container" style="width: 400px">
-                    <h3 style="text-align: center">申请援助</h3>
+                    <h3 style="text-align: center">增加案例</h3>
                     <form action="#" class="center-block" id="form">
                         <table border="1" class="table table-bordered table-hover center-block">
                             <div class="row form-group">
-                                <label for="type">问题类型：</label>
+                                <label for="topic">问题类型：</label>
                                 <label>
-                                    <select class="form-control" id="type" name="type">
+                                    <select class="form-control" id="topic" name="topic">
                                         <option>请选择问题类型</option>
                                         <option value="交通事故">交通事故</option>
                                         <option value="刑事辩护">刑事辩护</option>
@@ -157,27 +157,20 @@
                                 </label>
                             </div>
                             <div class="row form-group">
-                                <label for="pname">问题标题：</label>
-                                <input type="text" class="form-control" style=" height :25px;width: 300px" id="pname"
-                                       name="pname" placeholder="请输入问题标题"/>
+                                <label for="title">问题标题：</label>
+                                <input type="text" class="form-control" style=" height :25px;width: 300px" id="title"
+                                       name="title" placeholder="请输入问题标题"/>
                             </div>
                             <div class="row form-group">
-                                <label for="details">问题详情：</label>
-                                <textarea rows="3" cols="20" class="form-control" id="details" name="details">
+                                <label for="summary">问题摘要：</label>
+                                <input type="text" class="form-control" style=" height :25px;width: 300px" id="summary"
+                                       name="summary" placeholder="请输入问题标题"/>
+                            </div>
+                            <div class="row form-group">
+                                <label for="comment">问题详情：</label>
+                                <textarea rows="3" cols="20" class="form-control" id="comment" name="comment">
                             </textarea>
                             </div>
-                            <div class="row form-group">
-                                <label for="uname">姓名：</label>
-                                <input type="text" class="form-control" style=" height :25px;width: 300px" id="uname"
-                                       name="uname" placeholder="请输入姓名"/>
-                            </div>
-                            <div class="row form-group">
-                                <label for="telnumber">手机号码：</label>
-                                <input type="text" class="form-control" style=" height :25px;width: 300px"
-                                       id="telnumber"
-                                       name="telnumber" placeholder="请输入手机号码"/>
-                            </div>
-                            <input type="hidden" name="creatby" value="${loginUser.id}" readonly="readonly"/>
 
                             <div class="row form-group">
                                 <button type="submit" class="btn btn-info" href="javascript:void(0);" onclick="add();">

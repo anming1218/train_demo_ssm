@@ -52,6 +52,11 @@ public class Question {
      */
     private Integer creatby;
 
+    /**
+     * 查看次数
+     */
+    private Integer frequency;
+
     public Integer getId() {
         return id;
     }
@@ -125,6 +130,14 @@ public class Question {
         this.creatby = creatby;
     }
 
+    public Integer getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Integer frequency) {
+        this.frequency = frequency;
+    }
+
     @Override
     public String toString() {
         return "Question{" +
@@ -137,6 +150,7 @@ public class Question {
                 ", answer='" + answer + '\'' +
                 ", statu=" + statu +
                 ", creatby=" + creatby +
+                ", frequency=" + frequency +
                 '}';
     }
 }

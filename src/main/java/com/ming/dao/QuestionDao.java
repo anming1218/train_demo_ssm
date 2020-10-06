@@ -94,4 +94,22 @@ public interface QuestionDao {
      * @return
      */
     Integer findAmountProcessed();
+
+    /**
+     * 查找所有律师的id
+     * @return
+     */
+    List<Integer> selectLawyer();
+
+    /**
+     * 分配问题给律师
+     * @param map
+     */
+    void distributionToLaw(Map<String, Integer> map);
+
+    /**
+     * 增加新闻阅读次数
+     * @param id
+     */
+    void addFrequency(int id);
 }

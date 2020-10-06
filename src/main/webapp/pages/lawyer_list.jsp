@@ -13,7 +13,7 @@
     initial-scale: 初始的缩放比，为1:1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>管理员申报管理——申报等待</title>
+    <title>法律援助处理系统——律师</title>
 
     <!-- 1. 导入CSS的全局样式 -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
@@ -90,7 +90,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 fl sj " style="background-color: rgb(91,192,222);color: #ffffff">
-                <div id="status">亲爱的律师${loginUser.mname}，欢迎您！ &#160;&#160;&#160;&#160; <a
+                <div id="status">亲爱的律师${loginUser.username}，欢迎您！ &#160;&#160;&#160;&#160; <a
                         href="${pageContext.request.contextPath}/user/quit"><span style="color: #ffffff">退出登录</span></a>
                 </div>
 

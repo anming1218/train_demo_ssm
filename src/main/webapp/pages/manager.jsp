@@ -20,7 +20,7 @@
     initial-scale: 初始的缩放比，为1:1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>用户项目申报——我的申报</title>
+    <title>法律援助处理系统——管理员</title>
 
     <!-- 1. 导入CSS的全局样式 -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -103,6 +103,13 @@
                             href="${pageContext.request.contextPath}/question/findAll"
                             style="font-size: large;color: rgb(113,36,108)">
                         查看请求
+                    </a>
+                </li>
+                <li role="presentation" class="dropdown">
+                    <a
+                            href="${pageContext.request.contextPath}/pages/manager_knowledge_add.jsp"
+                            style="font-size: large;color: rgb(113,36,108)">
+                        增加案例
                     </a>
                 </li>
             </ul>

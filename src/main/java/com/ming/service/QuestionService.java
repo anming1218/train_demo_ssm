@@ -115,4 +115,9 @@ public interface QuestionService {
      */
     Map<String, Integer> findAmount();
 
+    /**
+     * 增加新闻阅读次数
+     * @param id
+     */
+    void addFrequency(String id);
 }

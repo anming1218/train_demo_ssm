@@ -13,7 +13,7 @@
     initial-scale: 初始的缩放比，为1:1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>管理员申报管理——申报等待</title>
+    <title>法律援助处理系统——管理员</title>
 
     <!-- 1. 导入CSS的全局样式 -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +31,7 @@
 
         function passProject(id) {
             //用户安全提示
-            if (confirm("你确定要通过这个申报吗？")) {
+            if (confirm("你确定要通过这个援助条目吗？")) {
                 //访问路径
                 location.href = "${pageContext.request.contextPath}/question/passApply/" + id;
             }
@@ -39,7 +39,7 @@
 
         function refuseProject(id) {
             //用户安全提示
-            if (confirm("你确定要拒绝这个申报吗？")) {
+            if (confirm("你确定要拒绝这个援助条目吗？")) {
                 //访问路径
                 location.href = "${pageContext.request.contextPath}/question/refuseApply/" + id;
             }
@@ -192,6 +192,13 @@
                             查看请求
                         </a>
                     </li>
+                    <li role="presentation" class="dropdown">
+                        <a
+                                href="${pageContext.request.contextPath}/pages/manager_knowledge_add.jsp"
+                                style="font-size: large;color: rgb(113,36,108)">
+                            增加案例
+                        </a>
+                    </li>
 
                 </ul>
             </div>
@@ -226,7 +233,7 @@
                                     <input type="checkbox" name="questionid" value="${question.id}">
                                 </label></td>
                                 <td>${s.count}</td>
-                                <td>${question.type}}</td>
+                                <td>${question.type}</td>
                                 <td>${question.pname}</td>
                                 <td>${question.uname}</td>
                                 <td>${question.telnumber}</td>
@@ -264,7 +271,7 @@
                             </li>
 
 
-                            <c:forEach begin="1" end="${pb.total}" var="i">
+                            <c:forEach begin="1" end="${pb.pages}" var="i">
 
 
                                 <c:if test="${pb.pageNum == i}">
@@ -281,14 +288,12 @@
                             </c:forEach>
 
 
-                            <c:if test="${pb.pageNum==pb.total}">
+                            <c:if test="${pb.pageNum==pb.pages}">
 
                             <li class="disabled">
-                                <a href="${pageContext.request.contextPath}/question/findAll?pages=${pb.pageNum}&size=${pb.pageSize}"
-                                   aria-label="Next">
                                     </c:if>
 
-                                    <c:if test="${pb.pageNum!=pb.total}">
+                                    <c:if test="${pb.pageNum!=pb.pages}">
                             <li>
                                 <a href="${pageContext.request.contextPath}/question/findAll?pages=${pb.pageNum + 1}&size=${pb.pageSize}"
                                    aria-label="Next">

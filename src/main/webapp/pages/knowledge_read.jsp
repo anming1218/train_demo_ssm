@@ -85,74 +85,24 @@
             <div class="row">
                 <div class="nmr fr center-block">
                     <div class="wz">
-                        <span>您现在的位置：<a
-                                href="../pages/home.html">首页</a>&nbsp;>&nbsp;<a>${question.type}</a></span>
+                        <span><a
+                                href="${pageContext.request.contextPath}/knowledge/findKnow">返回</a>
+                        </span>
                     </div>
 
                     <div class="nei n1">
                         <div class="con">
-                            <h1>${question.pname}</h1>
+                            <h1>${knowledgeOfLaw.title}</h1>
                             <div class="info">
-                                &nbsp;发布类型:${question.type}&nbsp;&nbsp;&nbsp;&nbsp;申请人:${question.uname}&nbsp;&nbsp;&nbsp;&nbsp;查看:${question.frequency}次
+                                &nbsp;发布类型:${knowledgeOfLaw.topic}&nbsp;&nbsp;&nbsp;&nbsp;查看:${knowledgeOfLaw.frequency}次
                             </div>
                             <div class="cont">
-                                <p style="font-family: -webkit-standard,serif;">${question.details}</p>
+                                <p style="font-family: -webkit-standard,serif;">${knowledgeOfLaw.comment}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br>
-
-                <c:choose>
-                    <c:when test="${loginUser.grade=='1'}">
-                        <div style="background: rgb(215,59,62)">
-                            <a style="color: white;font-size: medium">律 师 回 复</a>
-                        </div>
-                        <br>
-                        <div class="nei n1">
-                            <div class="con">
-                                <form action="${pageContext.request.contextPath}/question/answerQuestion"
-                                      method="post">
-                                    <input type="hidden" name="id" value="${question.id}" readonly="readonly"/>
-                                    <label>
-                                        <textarea class="form-control" rows="3" cols="150" name="answer"></textarea>
-                                    </label>
-                                    <br>
-                                    &nbsp;&nbsp;<button class="btn-danger" type="submit">提交</button>
-                                </form>
-
-                            </div>
-                        </div>
-                    </c:when>
-                    <c:when test="${loginUser.grade=='2'}">
-
-                    </c:when>
-                    <c:otherwise>
-
-                        <div style="background: rgb(215,59,62)">
-                            <a style="color: white;font-size: medium">律 师 回 复</a>
-                        </div>
-                        <br>
-                        <c:choose>
-                            <c:when test="${question.answer==null}">
-                                <div class="nei n1">
-                                    <div class="con" style="line-height: 30px">
-                                        <span style="font-family: 黑体;font-size: 19px">&nbsp;&nbsp;暂无回答！</span>
-                                    </div>
-                                </div>
-                            </c:when>
-                            <c:otherwise>
-                                <div class="nei n1">
-                                    <div class="con" style="line-height: 30px">
-                                        <span style="font-family: 新宋体;font-size: 17px">&nbsp;&nbsp;${question.answer}</span>
-                                    </div>
-                                </div>
-                            </c:otherwise>
-                        </c:choose>
-
-                    </c:otherwise>
-                </c:choose>
-
 
             </div>
         </div>

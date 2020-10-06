@@ -178,13 +178,20 @@
                             "                            <td>" + count + "</td>\n" +
                             "                            <td>" + this.type + "</td>\n" +
                             "                            <td>" + "<a style=\"color: #0f0f0f\" href=\"${pageContext.request.contextPath}/question/readQuestion/" + this.id + "\">" + this.pname + "</a></td>\n" +
-                            "                            <td>" + this.uname + "</td>\n" +
-                            "<td>" + "<a class=\"btn btn-danger btn-sm\" href=\"javascript:void(0);\">审核中</a>" + "</td>\n" +
-                            "                        </tr>";
+                            "                            <td>" + this.uname + "</td>\n";
+
+                        if (this.statu === 0) {
+                            table += "<td>" + "<a class=\"btn btn-danger btn-sm\" href=\"javascript:void(0);\">审核中</a>" + "</td>\n" +
+                                "                        </tr>";
+                        } else if (this.statu === 1) {
+                            table += "<td>" + "<a class=\"btn btn-warning btn-sm\" href=\"javascript:void(0);\">已审核</a>" + "</td>\n" +
+                                "                        </tr>";
+                        } else if (this.statu === 2) {
+                            table += "<td>" + "<a class=\"btn btn-success btn-sm\" href=\"javascript:void(0);\">已解答</a>" + "</td>\n" +
+                                "                        </tr>";
+                        }
 
                         count++;
-
-
                     });
                     questionList.append(table);
                     questionList.append("</table>");
@@ -396,7 +403,8 @@
                    style="color: #0f0f0f;font-size: 18px;line-height: 30px"><span>法律援助</span></a>
             </div>
             <div class="col-md-2" style="height: 30px">
-                <a href="../pages/home.html" style="color: #0f0f0f;font-size: 18px;line-height: 30px"><span>普法知识</span></a>
+                <a href="${pageContext.request.contextPath}/knowledge/findKnow"
+                   style="color: #0f0f0f;font-size: 18px;line-height: 30px"><span>普法知识</span></a>
             </div>
             <div class="col-md-12">
                 <hr style=" border:0; border-bottom:7px solid red;"/>
@@ -424,13 +432,16 @@
                         <a href="question_list.jsp" style="color: black"><span style="font-size: 18px">不限状态</span></a>
                     </div>
                     <div class="col-md-1 text-center  divcolor">
-                        <a onclick="findKindsQuestion(0,1,8)" style="color: black"><span style="font-size: 18px">审核中</span></a>
+                        <a onclick="findKindsQuestion(0,1,8)" style="color: black"><span
+                                style="font-size: 18px">审核中</span></a>
                     </div>
                     <div class="col-md-1 text-center  divcolor">
-                        <a onclick="findKindsQuestion(1,1,8)" style="color: black"><span style="font-size: 18px">已审核</span></a>
+                        <a onclick="findKindsQuestion(1,1,8)" style="color: black"><span
+                                style="font-size: 18px">已审核</span></a>
                     </div>
                     <div class="col-md-1 text-center  divcolor">
-                        <a onclick="findKindsQuestion(2,1,8)" style="color: black"><span style="font-size: 18px">已解答</span></a>
+                        <a onclick="findKindsQuestion(2,1,8)" style="color: black"><span
+                                style="font-size: 18px">已解答</span></a>
                     </div>
                 </div>
             </div>

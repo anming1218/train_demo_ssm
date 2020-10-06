@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  *@program: train_ssm
@@ -76,12 +77,22 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     /**
-     * 同意单个请求
+     * 同意单个请求并将其分配给某个律师
      * @param id
      */
     @Override
     public void passApply(String id) {
         questionDao.passApply(Integer.parseInt(id));
+        List<Integer> lawyerIds = questionDao.selectLawyer();
+
+        Random random = new Random();
+        int index = random.nextInt(lawyerIds.size());
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("questionId", Integer.parseInt(id));
+        map.put("lawyerId", lawyerIds.get(index));
+
+        questionDao.distributionToLaw(map);
     }
 
     /**
@@ -107,6 +118,16 @@ public class QuestionServiceImpl implements QuestionService {
         if (ids != null && ids.length != 0) {
             for (String id : ids) {
                 questionDao.passApply(Integer.parseInt(id));
+                List<Integer> lawyerIds = questionDao.selectLawyer();
+
+                Random random = new Random();
+                int index = random.nextInt(lawyerIds.size());
+
+                Map<String, Integer> map = new HashMap<>();
+                map.put("questionId", Integer.parseInt(id));
+                map.put("lawyerId", lawyerIds.get(index));
+
+                questionDao.distributionToLaw(map);
             }
         }
     }
@@ -191,5 +212,14 @@ public class QuestionServiceImpl implements QuestionService {
         map.put("allAmount", questionDao.findAmountAll());
         map.put("processed", questionDao.findAmountProcessed());
         return map;
+    }
+
+    /**
+     * 增加新闻阅读次数
+     * @param id
+     */
+    @Override
+    public void addFrequency(String id) {
+        questionDao.addFrequency(Integer.parseInt(id));
     }
 }

@@ -60,7 +60,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 fl sj " style="background-color: rgb(215,59,62);color: #ffffff">
-            新闻中国欢迎您！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span id="nowDateTimeSpan"></span></span>
+            法律援助处理平台欢迎您！&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span style="color: #ffffff;"><span id="nowDateTimeSpan"></span></span>
         </div>
     </div>
 
@@ -86,7 +86,7 @@
                 <div class="nmr fr center-block">
                     <div class="wz">
                         <span>您现在的位置：<a
-                                href="../pages/home.html">首页</a>&nbsp;>&nbsp;<a>${question.type}</a></span>
+                                href="${pageContext.request.contextPath}/pages/home.html">首页</a>&nbsp;>&nbsp;<a>${question.type}</a></span>
                     </div>
 
                     <div class="nei n1">

@@ -32,7 +32,7 @@ public class User {
     private Date birthday;
     private String birthdayStr;
     /**
-     * 身份 0：用户 1：律师 2：管理员
+     * 身份 0：普通用户 1：律师 2：管理员
      */
     private int grade;
 
